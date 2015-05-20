@@ -120,7 +120,7 @@ angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$f
 }]);
 
 
-
+// Using Array in angularFire
 	
 
 	// Get the entire database
