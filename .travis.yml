@@ -4,3 +4,16 @@ node_js:
 before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
+deploy:
+  provider: s3
+  access_key_id: "AKIAJOTWXVZNJFPHY4GQ"
+  secret_access_key: "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"
+  bucket: "afshinteymoori.com"
+  skip_cleanup: true
+  acl: public_read_write
+  region: southeast-2
+  endpoint: afshinteymoori.com.s3-website-ap-southeast-2.amazonaws.com
+  local_dir: dist
+  upload-dir: newtodo
+  
+
