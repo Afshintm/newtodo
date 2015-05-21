@@ -14,6 +14,6 @@ deploy:
   region: ap-southeast-2
   endpoint: "afshinteymoori.com.s3-website-ap-southeast-2.amazonaws.com"
   upload-dir: newtodo
-  local-dir: dist
+  
 
 
