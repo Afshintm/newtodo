@@ -22,3 +22,5 @@ and as it is a pain to type this everytime you are going to run unit tests, you 
 
 
 	webSiteHostAddress/index1.html is a sample to show javascript classes in effect it uses scripts\libs\atlib.js 
+
+	Added Travis CI hook 
