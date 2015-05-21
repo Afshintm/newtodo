@@ -11,9 +11,9 @@ deploy:
   bucket: "afshinteymoori.com"
   skip_cleanup: true
   acl: public_read_write
-  region: southeast-2
-  endpoint: afshinteymoori.com.s3-website-ap-southeast-2.amazonaws.com
-  
+  region: ap-southeast-2
+  endpoint: "afshinteymoori.com.s3-website-ap-southeast-2.amazonaws.com"
   upload-dir: newtodo
+  local-dir: dist
 
 
