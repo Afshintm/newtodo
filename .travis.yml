@@ -14,15 +14,6 @@ deploy:
   on: &2
     repo: Afshintm/newtodo
   bucket: afshinteymoori.com
-- provider: codedeploy
-  access_key_id: AKIAJ3VUYZJYNMX6R4LQ
-  secret_access_key: *1
-  bucket: afshinteymoori.com
-  key: '165150658204'
-  bundle_type: ''
-  application: newtodo
-  deployment_group: ''
-  on: *2
 before_deploy:
 - mkdir -p dpl_cd_upload
-- mv 165150658204 dpl_cd_upload/165150658204
+
