@@ -1,19 +1,30 @@
 <div class="row" ng-controler="productCtrl">
 <div class="col-lg-12">I'm {{data.name}}, have been developing enterprise web applications for a range of industries. You can find some of my personal experience working with different techologies in following articles. Hope that helps :)</div>
-<div class="row">
-	<div class="col-lg-12">
-		&nbsp&nbsp<h3 class="text-muted middle">Articles</h3>
-	</div>
-	<div class="col-lg-3 pull-left">
-		<ul>
-			<li ng-repeat="a in articles">
-			 <a href="" ng-click="showArticle(a)">{{a.title}}</a>	
-			</li>
-		</ul>
-	</div>
-<div class="col-lg-9 pull-right" >{{currentContent}}</div>
-</div>
+
 <div class="col-lg-12">
+	<h3 class="text-muted middle">Articles</h3>
+	<div class="col-lg-3 pull-left">
+	<ul>
+		<li ng-repeat="a in articles">
+		 <a href="" ng-click="showArticle(a)">{{a.title}}</a>	
+		</li>
+	</ul>
+	</div>
+	<div class="col-lg-9 pull-right" ng-show="currentContent">
+		<figure class='code'>
+			<div class="highlight">
+				<table>
+					<tr>
+						<td class='code'><pre><code class='bash'><span class='line'>{{currentContent}}</span></code></pre></td>
+					</tr>
+				</table>
+			</div>
+		</figure>
+</div>
+</div>
+
+<div class="col-lg-12">
+	<img src="https://travis-ci.org/Afshintm/newtodo.svg?branch=master"></img>
 	<input type="button" class="green" ng-show="(products || undefined) !== undefined" ng-click="saveDataTofirebase()" value="uploads">
 
 </div>
@@ -27,4 +38,7 @@
 		</tr>
 	</table>
 </div>
+
+
+
 </div>
