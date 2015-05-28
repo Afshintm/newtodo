@@ -41,9 +41,12 @@ angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$f
 	}) ;
 
 	var ref = null ;
-	getFirebase('https://afshinblog.firebaseio.com/').then(function(fireRef){
+	getFirebase('https://afshinblog.firebaseio.com/arrayData').then(function(fireRef){
 		ref = fireRef ;
 		
+		console.log('ref for arrayData is: ');
+		console.log(ref);
+
 		var  defered = $q.defer()  ;
 
 		ref.child('articles').on('value',function(snapshot){
@@ -83,6 +86,8 @@ angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$f
 		console.log(err);
 	}).then(function(data){
 		$scope.articlesRef = data.ref ;
+		console.log('article ref: and val');
+		console.log(data) ;
 		$scope.baseRef = data.ref.parent();
 		$scope.articles = [];
 		$scope.articles.push(data.data['Using Autofac effectively']) ;
