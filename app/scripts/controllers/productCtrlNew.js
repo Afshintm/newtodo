@@ -41,15 +41,18 @@ angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$f
 	}) ;
 
 	var ref = null ;
-	getFirebase('https://afshinblog.firebaseio.com/arrayData').then(function(fireRef){
+	getFirebase('https://afshinproduct.firebaseio.com').then(function(fireRef){
 		ref = fireRef ;
 		
-		console.log('ref for arrayData is: ');
+		console.log('ref for afshinproduct is: ');
 		console.log(ref);
 
 		var  defered = $q.defer()  ;
-
-		ref.child('articles').on('value',function(snapshot){
+		var productData = ref.child('products');
+		productData.on('value',function(snapshot){
+			if (snapshot.val()===null){
+				productData.push();
+			}
 			console.log('Getting data with registering value event on ref.child with articles parameter.');
 			defered.resolve(
 				{
@@ -57,27 +60,26 @@ angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$f
 					data: snapshot.val()
 				});
 			
-		},
-		function(errorObject){
+		},function(errorObject){
 			console.log('no article child found.');
 			defered.reject(errorObject) ;
-			ref.child('articles').set({
-				'Using Autofac effectively':{
-				title: 'Using Autofac effectively',
-				tags:['Autofac','Dependancy Injection','C#','.NET'],
-				content:'Autofac is blah blah blah ...'
-			}}).on('value',function(snap){
-				// defered.resolve(snap.val());
-				defered.resolve(
-					{
-						ref: ref.child('articles'),
-						data: snap.val()
-					});
+			// ref.child('articles').set({
+			// 	'Using Autofac effectively':{
+			// 	title: 'Using Autofac effectively',
+			// 	tags:['Autofac','Dependancy Injection','C#','.NET'],
+			// 	content:'Autofac is blah blah blah ...'
+			// }}).on('value',function(snap){
+			// 	// defered.resolve(snap.val());
+			// 	defered.resolve(
+			// 		{
+			// 			ref: ref.child('articles'),
+			// 			data: snap.val()
+			// 		});
 
-				//defered.resolve(ref.child('articles'));
-			},function(errInitializing){
-				defered.reject(errInitializing) ;
-			});
+			// 	//defered.resolve(ref.child('articles'));
+			// },function(errInitializing){
+			// 	defered.reject(errInitializing) ;
+			// });
 		});
 		
 		return defered.promise;
@@ -85,12 +87,12 @@ angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$f
 	},function(err){
 		console.log(err);
 	}).then(function(data){
-		$scope.articlesRef = data.ref ;
+		// $scope.articlesRef = data.ref ;
 		console.log('article ref: and val');
 		console.log(data) ;
-		$scope.baseRef = data.ref.parent();
-		$scope.articles = [];
-		$scope.articles.push(data.data['Using Autofac effectively']) ;
+		// $scope.baseRef = data.ref.parent();
+		// $scope.articles = [];
+		// $scope.articles.push(data.data['Using Autofac effectively']) ;
 	},function(){
 		
 	}
