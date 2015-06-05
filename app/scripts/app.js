@@ -50,7 +50,6 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','firebase','config'])
 			return angular.module('config');
 		};
 	});
-
 	
 
 	console.log(ENV);
@@ -63,6 +62,10 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','firebase','config'])
 		templateUrl: 'views/productList.html',
 		controller: 'productCtrl',
 		title: 'Product List'
+	}).when('/SyncDb',{
+		templateUrl: 'views/syncDb.html',
+		controller: 'syncDbCtrl',
+		title: 'Sync Database'
 	}).otherwise({redirectTo: '/'});
 
 }])

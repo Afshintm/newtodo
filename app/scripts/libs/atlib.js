@@ -13,7 +13,7 @@ console.log('The result of calling ordinaryfunction is: '+v) ;
 
 //=================================================================================================
 // if we are in strinct mode this which is supposed to be invocation context of a function is undefined whereas it is global object in non strict mode.
-var isStrictMode = (function(){return !this})() ;
+var isStrictMode = (function(){return !this;})() ;
 
 console.log('are we in strict mode: ' + isStrictMode) ;
 
@@ -23,14 +23,13 @@ var o = {
 	x: 10,
 	y: 20,
 	add: function(){
-		var self = this ; // this here is the o object ;
-		var message = 'the result is: ';
-		return f() ;
+		var self = this; // this here is the o object ;
 		function f(){
-			return self.x + self.y ;
+			return self.x + self.y;
+		}
+		return f() ;
 	}
-	}
-}
+};
 console.log('the add method called on o object :',o.add()) ;
 
 //====================================================================================================
@@ -56,7 +55,7 @@ Person.prototype ={
 	work: function(){
 		return this.toString() ;
 	}
-}
+};
 
 var person = new Person('afshin',40) ;
 
@@ -67,7 +66,7 @@ console.log(person instanceof Person) ;
 // any javaScript function can be used as a constructor and constructor invocation needs prototype property. the value of this property is an object with a single property called constructor .
 // Constructor property is pointing to the function to which prototype property belongs. 
 
-var F = function (){} //F is a function object
+var F = function (){}; //F is a function object
 var p1 = F.prototype ; // it has a prototype property 
 console.log(p1.constructor === F); // which has a constructor property which is the function object
 
@@ -79,7 +78,9 @@ Person.prototype.constructor = Person;
 
 // then we will have the prototype and it's constructor property back 
 var pp = Person.prototype ;
-if(pp.constructor === Person) console.log('our class has got its prototype object back')  ;
+if(pp.constructor === Person){
+	console.log('our class has got its prototype object back');
+}
 
 
 
@@ -90,7 +91,7 @@ function Factory(name,numberofPeople)
 	this.name = name || '';
 	this.count = numberofPeople || 0;
 	this.employees = [];
-};
+}
 // adding methods to prototype object of the constructor function or class Factory
 Factory.prototype.toString = function(){ 
 	return 'Factory '+this.name+' has '+ this.count+' employees.';
@@ -109,7 +110,7 @@ Factory.prototype.foreach = function(f){
 	{
 		f(this.employees[i]) ;
 	}
-}
+};
 
 var factory = new Factory('BMW') ;
 factory.hire(person);

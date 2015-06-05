@@ -17,19 +17,16 @@ describe('Controller: MainCtrl', function () {
       //   'apiEndpoint': 'http://localhost/BackendServices'
       // };
       this.$get = function(){
-        var getENV = jasmine.createSpy('getENV');
-        return
-        return env ;
-      }
+        //var getENV = jasmine.createSpy('getENV');
+        return;
+        //return env ;
+      };
     });
   });
 
   module(function(configProvider){
     configProviderObj = configProvider ;
   });
-  
-
-
 
 
   // Initialize the controller and a mock scope

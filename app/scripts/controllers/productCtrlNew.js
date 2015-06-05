@@ -21,10 +21,12 @@ angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$f
 		var defered = $q.defer();
 		var fireRef = new Firebase(url) ;
 
-		if (fireRef)
+		if (fireRef){
 			defered.resolve(fireRef);
-		else
+		}			
+		else		{
 			defered.reject('Could not get firebase at '+ url +' location. ');
+		}
 
 		return defered.promise;
 	};
@@ -41,7 +43,9 @@ angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$f
 	}) ;
 
 	var ref = null ;
-	getFirebase('https://afshinproduct.firebaseio.com').then(function(fireRef){
+	getFirebase('https://afshinproduct.firebaseio.com')
+	.then(
+		function(fireRef){
 		ref = fireRef ;
 		
 		console.log('ref for afshinproduct is: ');
@@ -51,7 +55,8 @@ angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$f
 		var productData = ref.child('products');
 		productData.on('value',function(snapshot){
 			if (snapshot.val()===null){
-				productData.push();
+				var localEmptyRef = productData.push();
+				console.log('products is empty and new local key created is: '+ localEmptyRef.key());
 			}
 			console.log('Getting data with registering value event on ref.child with articles parameter.');
 			defered.resolve(
@@ -82,21 +87,20 @@ angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$f
 			// });
 		});
 		
-		return defered.promise;
-
-	},function(err){
-		console.log(err);
-	}).then(function(data){
-		// $scope.articlesRef = data.ref ;
-		console.log('article ref: and val');
-		console.log(data) ;
-		// $scope.baseRef = data.ref.parent();
-		// $scope.articles = [];
-		// $scope.articles.push(data.data['Using Autofac effectively']) ;
-	},function(){
+		return defered.promise;},
+		function(err){console.log(err);}
+	).then(
+		function(data){
+			// $scope.articlesRef = data.ref ;
+			console.log('article ref: and val');
+			console.log(data) ;
+			// $scope.baseRef = data.ref.parent();
+			// $scope.articles = [];
+			// $scope.articles.push(data.data['Using Autofac effectively']) ;
+		},
+		function(){
 		
-	}
-
+		}
 	);
 
 	
