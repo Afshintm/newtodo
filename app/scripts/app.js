@@ -41,17 +41,25 @@
  
 angular.module('mytodoApp', ['ngRoute','ngAnimate','firebase','config'])
 .config(['ENV','$provide', '$routeProvider', function(ENV, $provide, $routeProvider){
-	console.log('mytodoApp config is happening...') ;
-
 	$provide.provider('appConfig',function(){
-
-		console.log(this) ;
 		this.$get = function(){
 			return angular.module('config');
+			//return new angular.module('config');
 		};
 	});
-	
 
+$provide.provider('firebaseArray',function firebaseArrayProvider(){
+	this.$get = function(){
+		//var fireRef = new Firebase(url) ;
+		var fireRef = "hello";
+		return fireRef;	
+	}
+});
+
+//In configuration phase we get other dependecies using their providers
+// at this stage services, factories and controllers have not been instantiated yet
+	console.log('mytodoApp configuration phase is happening...') ;
+	
 	console.log(ENV);
 
 	$routeProvider.when('/',{
@@ -71,15 +79,6 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','firebase','config'])
 }])
 .run(
 	function(){
-		console.log('run is happeing') ;
+		console.log('mytodoApp run phase is happeing...') ;
 	});
-
-
-// 	'Product',function(Product){
-// 	return Product.get().then(function(data){
-// 		return true ;
-// 	}, function(err){
-// 		return false ;
-// 	});
-// }
 
