@@ -1,9 +1,6 @@
 'use strict';
 
 angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$firebaseArray','person',function($scope, utils, ENV, $firebaseArray,person){
-	// console.log('inside syncDbCtrl');
-	// console.log($firebaseArray);
-	// console.log(person);
 	var model = $scope.model = {
 		viewTitle:'sync Database'
 	};
@@ -12,15 +9,20 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
 		model.dbProducts = databaseData ;
 		console.log(model.dbProducts);
 	},function(reason){
+
 		throw (reason);
 	});
-	utils.getFirebase('https://afshinproduct.firebaseio.com')
-	.then(
+	var fireRef = 'https://afshinproduct.firebaseio.com';
+
+	utils.getFirebase(fireRef).then(
 		function(firebaseData){
+			console.log('data from firebase ref: '+ fireRef);
+			console.log(firebaseData);
 			model.firebaseData = firebaseData;
 		},
 		function(reason){
+			console.log('no Data in firebase ref '+ fireRef);
 			console.log(reason);
 			model.firebaseData = null ;
-		});
+		}).then();
 }]);
