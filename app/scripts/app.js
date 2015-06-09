@@ -9,38 +9,25 @@
  * Main module of the application.
  */
  
-// angular.module('mytodoApp', ['ngRoute','ngAnimate','firebase','config'])
-// .config(['ENV','$provide', '$routeProvider', function(ENV, $provide, $routeProvider){
-// 	console.log('mytodoApp config is happening...') ;
-// 	console.log(ENV);
-// 	$routeProvider.when('/',{
-// 		templateUrl: 'views/main.html',
-// 		controller:'MainCtrl',
-// 		title: 'main page'
-// 	}).when('/Products',{
-// 		templateUrl: 'views/productList.html',
-// 		controller: 'productCtrl',
-// 		title: 'Product List'
-// 	}).otherwise({redirectTo: '/'});
+angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase'])
 
-// }])
-// .run(
-// 	function(){
-// 		console.log('run is happeing') ;
-// 	});
+.constant('FBURL','https://afshinproduct.firebaseio.com')
+//
+.factory('firebase',['$window','FBURL',function($window,FBURL){
+	return new $window.Firebase(FBURL) ;
+}])
 
-//angular.module('mytodoApp', ['ngRoute','ngAnimate','firebase'])
-//.constant('ENV',{'name':'123',apiEndpoint:'http://localhost/backendServices/api'})
-//.provide.provider('appConfig',function(){
-//	var ENV = {'name':'123',apiEndpoint:'http://localhost/backendServices/api'} ;
-//this.get = function(){
-//	return ENV ;
-//}
-//})
- 
- 
-angular.module('mytodoApp', ['ngRoute','ngAnimate','firebase','config'])
-.config(['ENV','$provide', '$routeProvider', function(ENV, $provide, $routeProvider){
+// using provider helper before config to define a provider 
+// person provider simply return an instance of Person constructor function which in turn has to ahve a $get property or method 
+// containing a n instance of the service it provides 
+
+.provider('person',function(){
+	return new Person();
+})
+// we inject the defined provider using the provider name + 'Provider' suffix to our module config phase 
+.config(['ENV','$provide', '$routeProvider','personProvider', function(ENV, $provide, $routeProvider,personProvider){
+	personProvider.setFirstName('afshin');
+	personProvider.setLastName('Teymoori');
 	$provide.provider('appConfig',function(){
 		this.$get = function(){
 			return angular.module('config');
@@ -48,9 +35,8 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','firebase','config'])
 		};
 	});
 
-$provide.provider('firebaseArray',function firebaseArrayProvider(){
+$provide.provider('myService',function myServiceProvider(){
 	this.$get = function(){
-		//var fireRef = new Firebase(url) ;
 		var fireRef = "hello";
 		return fireRef;	
 	}
@@ -61,6 +47,7 @@ $provide.provider('firebaseArray',function firebaseArrayProvider(){
 	console.log('mytodoApp configuration phase is happening...') ;
 	
 	console.log(ENV);
+	
 
 	$routeProvider.when('/',{
 		templateUrl: 'views/main.html',
@@ -77,8 +64,9 @@ $provide.provider('firebaseArray',function firebaseArrayProvider(){
 	}).otherwise({redirectTo: '/'});
 
 }])
-.run(
-	function(){
+.run(['$firebaseArray','firebase',
+	function($firebaseArray,firebase){
 		console.log('mytodoApp run phase is happeing...') ;
-	});
+		console.log(firebase) ;
+	}]);
 

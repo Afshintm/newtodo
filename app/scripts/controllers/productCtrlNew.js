@@ -1,7 +1,7 @@
 /*global Firebase */
 'use strict';
 
-angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV','$firebase', '$q',function($scope,$http,ENV,$firebase, $q){
+angular.module('mytodoApp').controller('productCtrl',['$scope','$http','ENV', '$q',function($scope,$http,ENV,$q){
 
 
 	var callApi = function(apiAddress){
