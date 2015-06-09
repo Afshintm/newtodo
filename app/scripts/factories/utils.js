@@ -8,7 +8,7 @@ angular.module('mytodoApp')
 // 	}
 // }])
 
-.factory('utils',['$http','$q','myService','$firebaseArray',function utilsFactory($http, $q, myService,$firebaseArray){
+.factory('utils',['$http','$q','myService','firebaseRef','$firebaseArray',function utilsFactory($http, $q, myService, firebaseRef, $firebaseArray){
 	
 	var utils = {
 		
@@ -30,17 +30,19 @@ angular.module('mytodoApp')
 		,getFirebase: function(url){
 			var defered = $q.defer();
 			//var fireRef = new Firebase(url) ;
-			//var firebaseData = firebaseArray();
-			console.log(myService) ;
-			console.log($firebaseArray) ;
-			defered.resolve({a:1});
-			// firebaseData.$loaded().then(
-			// 	function(result){
-			// 		defered.resolve(result);
-			// 	},
-			// 	function(reason){
-			// 	defered.reject(reason);
-			// });
+			var firebaseData = $firebaseArray(firebaseRef).$loaded().then(
+				function(result){
+					defered.resolve(result);
+				},
+				function(reason){
+				defered.reject(reason);
+			});
+
+			// console.log(firebaseData) ;
+			// console.log(myService) ;
+			// console.log($firebaseArray) ;
+			// defered.resolve({a:1});
+
 			return defered.promise;
 		}
 	};

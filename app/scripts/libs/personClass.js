@@ -1,3 +1,6 @@
+
+
+
 // (function(){
 
 	function Person(firstName,lastName){
@@ -16,3 +19,10 @@
 	}
 // }
 // )();
+
+
+
+angular.module('person',[])
+.provider('person',function(){
+	return new Person();
+});
