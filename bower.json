@@ -20,5 +20,9 @@
     "angular-mocks": "^1.3.0"
   },
   "appPath": "app",
-  "moduleName": "mytodoApp"
+  "moduleName": "mytodoApp",
+  "resolutions": {
+    "firebase": "2.2.x",
+    "angular": "^1.3.0"
+  }
 }

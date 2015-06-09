@@ -2,7 +2,8 @@
 
 angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$firebaseArray','person',function($scope, utils, ENV, $firebaseArray,person){
 	var model = $scope.model = {
-		viewTitle:'sync Database'
+		viewTitle:'sync Database',
+		dbProduct : []
 	};
 	
 	utils.getApi(ENV.apiEndpoint + '/products').then(function(databaseData){
@@ -14,8 +15,7 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
 	});
 	var fireRef = 'https://afshinproduct.firebaseio.com';
 
-	utils.getFirebase(fireRef).then(
-		function(firebaseData){
+	utils.getFirebase(fireRef).then(function(firebaseData){
 			console.log('data from firebase ref: '+ fireRef);
 			console.log(firebaseData);
 			model.firebaseData = firebaseData;
