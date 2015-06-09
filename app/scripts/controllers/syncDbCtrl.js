@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$firebaseArray','person',function($scope, utils, ENV, $firebaseArray,person){
-	console.log('inside syncDbCtrl');
-	console.log($firebaseArray);
-	console.log(person);
+	// console.log('inside syncDbCtrl');
+	// console.log($firebaseArray);
+	// console.log(person);
 	var model = $scope.model = {
 		viewTitle:'sync Database'
 	};
@@ -17,9 +17,10 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
 	utils.getFirebase('https://afshinproduct.firebaseio.com')
 	.then(
 		function(firebaseData){
-
+			model.firebaseData = firebaseData;
 		},
-		function(){
-
+		function(reason){
+			console.log(reason);
+			model.firebaseData = null ;
 		});
 }]);

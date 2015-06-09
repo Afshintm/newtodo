@@ -14,7 +14,7 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person']
 .constant('FBURL','https://afshinproduct.firebaseio.com')
 //
 .factory('firebaseRef',['$window','FBURL',function($window,FBURL){
-	return new $window.Firebase(FBURL) ;
+	return function(url){ return new $window.Firebase((url)?url:FBURL) ;};
 }])
 
 // using provider helper before config to define a provider 
