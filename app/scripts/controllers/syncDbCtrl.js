@@ -1,37 +1,41 @@
 'use strict';
 
-angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$firebaseArray','person','firebaseRef',function($scope, utils, ENV, $firebaseArray,person,firebaseRef){
+angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$firebaseArray','person','firebaseRef',function($scope, utils, ENV, $firebaseArray, person, firebaseRef){
 	var model = $scope.model = {
 		viewTitle:'sync Database',
 		dbProducts: [],
-		firebaseData: null
+		firebaseData: null,
+		edit:[],
+		fireRef: 'https://afshinproduct.firebaseio.com'
 	};
-	
+	$scope.editPrice = function(index){
+		console.log('index passed is : ' + index) ;
+
+        model.edit[index] = 1;
+        model.firebaseArray[index].Price = parseFloat('88.88').toFixed(2);
+
+        model.firebaseArray.$save(index).then(function(ref){
+        	if (ref.key() === model.firebaseArray[index].$id)
+        		console.log(model.firebaseArray[index].$id);
+        });
+	};
+
 	utils.getApi(ENV.apiEndpoint + '/products').then(function(databaseData){
 		model.dbProducts = databaseData ;
-		//console.log(model.dbProducts);
 	},function(reason){
 
 		throw (reason);
 	});
-	var fireRef = 'https://afshinproduct.firebaseio.com';
 
-	utils.getFirebase(fireRef).then(function(firebaseData){
-			// console.log('data from firebase ref: '+ fireRef);
-			// console.log(firebaseData);
-			model.firebaseData = firebaseData;
-			if (model.firebaseData.length <= 0 && model.dbProducts.length>0)
+	utils.getFirebase(model.fireRef).then(function(firebaseData){
+			//console.log('data from firebase ref: '+ model.fireRef);
+			model.firebaseArray = firebaseData;
+			if (model.firebaseArray.length <= 0 && model.dbProducts.length>0)
 			{
-				var firebaseArray = $firebaseArray(firebaseRef(fireRef));
 				angular.forEach(model.dbProducts,function(value){
-					firebaseArray.$add(value) ;
-				});
-				
-				utils.getFirebase(fireRef).then(function(addedData){
-					model.firebaseData = addedData ;
+					model.firebaseArray.$add(value);
 				});
 			}
-
 		},
 		function(reason){
 			//console.log('no Data in firebase ref '+ fireRef);
