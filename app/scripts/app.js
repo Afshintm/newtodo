@@ -67,6 +67,7 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person']
 	function($firebaseArray,firebaseRef){
 		console.log('mytodoApp run phase is happeing...') ;
 		if (!$firebaseArray || !firebaseRef){
+			console.log('test');
 			console.log(' Some services are not ready') ;
 		}
 	}]);
