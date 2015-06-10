@@ -9,7 +9,7 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
 	
 	utils.getApi(ENV.apiEndpoint + '/products').then(function(databaseData){
 		model.dbProducts = databaseData ;
-		console.log(model.dbProducts);
+		//console.log(model.dbProducts);
 	},function(reason){
 
 		throw (reason);
@@ -34,7 +34,7 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
 
 		},
 		function(reason){
-			console.log('no Data in firebase ref '+ fireRef);
+			//console.log('no Data in firebase ref '+ fireRef);
 			console.log(reason);
 			model.firebaseData = null ;
 		}).then();
