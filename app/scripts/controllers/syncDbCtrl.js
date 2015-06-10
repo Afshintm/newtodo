@@ -3,7 +3,8 @@
 angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$firebaseArray','person','firebaseRef',function($scope, utils, ENV, $firebaseArray,person,firebaseRef){
 	var model = $scope.model = {
 		viewTitle:'sync Database',
-		dbProducts : []
+		dbProducts: [],
+		firebaseData: null
 	};
 	
 	utils.getApi(ENV.apiEndpoint + '/products').then(function(databaseData){
@@ -16,8 +17,8 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
 	var fireRef = 'https://afshinproduct.firebaseio.com';
 
 	utils.getFirebase(fireRef).then(function(firebaseData){
-			console.log('data from firebase ref: '+ fireRef);
-			console.log(firebaseData);
+			// console.log('data from firebase ref: '+ fireRef);
+			// console.log(firebaseData);
 			model.firebaseData = firebaseData;
 			if (model.firebaseData.length <= 0 && model.dbProducts.length>0)
 			{
@@ -26,7 +27,11 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
 					firebaseArray.$add(value) ;
 				});
 				
+				utils.getFirebase(fireRef).then(function(addedData){
+					model.firebaseData = addedData ;
+				});
 			}
+
 		},
 		function(reason){
 			console.log('no Data in firebase ref '+ fireRef);
