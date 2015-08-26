@@ -21,7 +21,10 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
         		
         });
 	};
-
+	console.log(firebaseRef);
+	console.log(person);
+	console.log($firebaseArray);
+	
 	utils.getApi(ENV.apiEndpoint + '/products').then(function(databaseData){
 		model.dbProducts = databaseData ;
 	},function(reason){
