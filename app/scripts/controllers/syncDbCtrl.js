@@ -15,11 +15,16 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
         model.firebaseArray[index].Price = parseFloat('88.88').toFixed(2);
 
         model.firebaseArray.$save(index).then(function(ref){
-        	if (ref.key() === model.firebaseArray[index].$id)
+        	if (ref.key() === model.firebaseArray[index].$id){
         		console.log(model.firebaseArray[index].$id);
+        	}
+        		
         });
 	};
-
+	console.log(firebaseRef);
+	console.log(person);
+	console.log($firebaseArray);
+	
 	utils.getApi(ENV.apiEndpoint + '/products').then(function(databaseData){
 		model.dbProducts = databaseData ;
 	},function(reason){

@@ -30,7 +30,7 @@ module.exports = function(config) {
     ],
 
     // list of files / patterns to exclude
-    exclude: [],
+    exclude: ['app/scripts/libs/promises.js'],
 
     // web server port
     port: 8080,

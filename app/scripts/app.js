@@ -60,6 +60,10 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person']
 		templateUrl: 'views/syncDb.html',
 		controller: 'syncDbCtrl',
 		title: 'Sync Database'
+	}).when('/My Invoices',{
+		templateUrl: 'views/invoiceList.html',
+		controller: 'invoiceCtrl',
+		title: 'Invoice List'
 	}).otherwise({redirectTo: '/'});
 
 }])
