@@ -12,15 +12,18 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
 		console.log('index passed is : ' + index) ;
 
         model.edit[index] = 1;
-        model.firebaseArray[index].Price = parseFloat('88.88').toFixed(2);
+        model.firebaseArray[index].Price = parseFloat(model.firebaseArray[index].Price).toFixed(2);
 
+	};
+	$scope.updatePrice = function(index){
+		model.edit[index] = 0;
         model.firebaseArray.$save(index).then(function(ref){
         	if (ref.key() === model.firebaseArray[index].$id){
-        		console.log(model.firebaseArray[index].$id);
+        		console.log('index updated : ' + model.firebaseArray[index].$id);
         	}
         		
-        });
-	};
+        });		
+	}
 	console.log(firebaseRef);
 	console.log(person);
 	console.log($firebaseArray);
