@@ -43,7 +43,7 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person']
 
 	//In configuration phase we get other dependecies using their providers
 	// at this stage services, factories and controllers have not been instantiated yet
-	console.log('mytodoApp configuration phase is happening...') ;
+	//console.log('mytodoApp configuration phase is happening...') ;
 	
 	
 	
@@ -69,11 +69,11 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person']
 }])
 .run(['$firebaseArray','firebaseRef',
 	function($firebaseArray,firebaseRef){
-		console.log('mytodoApp run phase is happeing...') ;
-		console.log(firebaseRef);
+		// console.log('mytodoApp run phase is happeing...') ;
+		// console.log(firebaseRef);
 		if (!$firebaseArray || !firebaseRef){
-			console.log('test');
-			console.log(' Some services are not ready') ;
+			// console.log('test');
+			// console.log(' Some services are not ready') ;
 		}
 	}]);
 
