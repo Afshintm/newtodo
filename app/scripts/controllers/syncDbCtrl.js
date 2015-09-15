@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$firebaseArray','person','firebaseRef',function($scope, utils, ENV, $firebaseArray, person, firebaseRef){
+angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV',function($scope, utils, ENV){
 	var model = $scope.model = {
 		viewTitle:'sync Database',
 		dbProducts: [],
@@ -24,9 +24,9 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','$fi
         		
         });		
 	}
-	console.log(firebaseRef);
-	console.log(person);
-	console.log($firebaseArray);
+	// console.log(firebaseRef);
+	// console.log(person);
+	// console.log($firebaseArray);
 	
 	utils.getApi(ENV.apiEndpoint + '/products').then(function(databaseData){
 		model.dbProducts = databaseData ;
