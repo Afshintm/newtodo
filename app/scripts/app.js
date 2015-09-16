@@ -10,11 +10,18 @@
  */
  
 angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person'])
+.constant('fbProductsUrl','https://afshinproduct.firebaseio.com')
+.constant('fbArticlesUrl','https://afshinblog.firebaseio.com')
+.factory('firebaseRef',['$window','fbProductsUrl','fbArticlesUrl',function($window,fbProductsUrl,fbArticlesUrl){
 
-.constant('FBURL','https://afshinproduct.firebaseio.com')
-//
-.factory('firebaseRef',['$window','FBURL',function($window,FBURL){
-	return function(url){ return new $window.Firebase((url)?url:FBURL) ;};
+	return function(url){
+		var fireRef = {
+			urlFireRef: new $window.Firebase(url),
+			productsFireRef: new $window.Firebase(fbProductsUrl),
+			articlesFireRef: new $window.Firebase(fbArticlesUrl)
+		};
+		return fireRef;
+	}
 }])
 
 // using provider helper before config to define a provider 
@@ -56,6 +63,10 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person']
 		templateUrl: 'views/productList.html',
 		controller: 'productCtrl',
 		title: 'Product List'
+	}).when('/Articles',{
+		templateUrl: 'views/articles.html',
+		controller: 'articlesCtrl',
+		title: 'Articles List'
 	}).when('/SyncDb',{
 		templateUrl: 'views/syncDb.html',
 		controller: 'syncDbCtrl',
