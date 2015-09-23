@@ -12,14 +12,9 @@
 angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person'])
 .constant('fbProductsUrl','https://afshinproduct.firebaseio.com')
 .constant('fbArticlesUrl','https://afshinblog.firebaseio.com')
-.factory('firebaseRef',['$window','fbProductsUrl','fbArticlesUrl',function($window,fbProductsUrl,fbArticlesUrl){
-
+.factory('firebaseRef',['$window',function($window){
 	return function(url){
-		var fireRef = {
-			urlFireRef: new $window.Firebase(url),
-			productsFireRef: new $window.Firebase(fbProductsUrl),
-			articlesFireRef: new $window.Firebase(fbArticlesUrl)
-		};
+		var fireRef = new $window.Firebase(url);
 		return fireRef;
 	}
 }])
@@ -59,7 +54,18 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person']
 		templateUrl: 'views/main.html',
 		controller:'MainCtrl',
 		title: 'main page'
-	}).when('/Products',{
+	})
+	.when('/Contact',{
+			templateUrl: 'views/main.html',
+			controller: 'MainCtrl',
+			title: 'main page'
+		})
+	.when('/About',{
+			templateUrl: 'views/main.html',
+			controller: 'MainCtrl',
+			title: 'main page'
+		})
+	.when('/Products',{
 		templateUrl: 'views/productList.html',
 		controller: 'productCtrl',
 		title: 'Product List'

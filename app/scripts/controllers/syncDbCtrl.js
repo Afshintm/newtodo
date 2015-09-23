@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV',function($scope, utils, ENV){
+angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','firebaseRef',function($scope, utils, ENV,firebaseRef){
 	var model = $scope.model = {
 		viewTitle:'sync Database',
 		dbProducts: [],
 		firebaseData: null,
 		edit:[],
-		fireRef: 'https://afshinproduct.firebaseio.com'
+		fireBaseProductRef: 'https://afshinproduct.firebaseio.com'
 	};
 	$scope.editPrice = function(index){
 		// console.log('index passed is : ' + index) ;
@@ -24,9 +24,6 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV',func
         		
         });		
 	}
-	// console.log(firebaseRef);
-	// console.log(person);
-	// console.log($firebaseArray);
 	
 	utils.getApi(ENV.apiEndpoint + '/products').then(function(databaseData){
 		model.dbProducts = databaseData ;
@@ -34,8 +31,8 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV',func
 
 		throw (reason);
 	});
-
-	utils.getFirebase(model.fireRef).then(function(firebaseData){
+	var productsRef = firebaseRef(model.fireBaseProductRef);
+	utils.getFirebaseArray(productsRef).then(function(firebaseData){
 			//console.log('data from firebase ref: '+ model.fireRef);
 			model.firebaseArray = firebaseData;
 			if (model.firebaseArray.length <= 0 && model.dbProducts.length>0)

@@ -8,7 +8,7 @@ angular.module('mytodoApp')
 // 	}
 // }])
 
-.factory('utils',['$http','$q','myService','firebaseRef','$firebaseArray',function utilsFactory($http, $q, myService, firebaseRef, $firebaseArray){
+.factory('utils',['$http','$q','myService','firebaseRef','$firebaseArray','$firebaseObject',function utilsFactory($http, $q, myService, firebaseRef, $firebaseArray, $firebaseObject){
 	
 	var utils = {
 		getApi: function(apiAddress){
@@ -31,10 +31,25 @@ angular.module('mytodoApp')
 			}
 			return defered.promise;
 		},
-		getFirebase: function(url){
+		//gets a firebase Ref and return angularfire $firebaseArray which is an array of data on that Ref
+		getFirebaseArray: function(fireRef){
 			var defered = $q.defer();
-			$firebaseArray(firebaseRef(url)).$loaded().then(
+			$firebaseArray(fireRef).$loaded().then(
 				function(result){
+
+					defered.resolve(result);
+				},
+				function(reason){
+				defered.reject(reason);
+			});
+			return defered.promise;
+		},
+		//gets a firebase Ref and return angularfire $firebaseArray which is an array of data on that Ref
+		getFirebaseObject: function(fireRef){
+			var defered = $q.defer();
+			$firebaseObject(fireRef).$loaded().then(
+				function(result){
+
 					defered.resolve(result);
 				},
 				function(reason){
@@ -42,6 +57,8 @@ angular.module('mytodoApp')
 			});
 			return defered.promise;
 		}
+
+
 	};
 
 	return utils;

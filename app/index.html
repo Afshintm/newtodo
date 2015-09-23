@@ -24,11 +24,11 @@
     <div class="container-fluid">
       <div class="header">
         <ul class="nav nav-pills">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
+          <li class="active"><a ng-href="#/">Home</a></li>
+          <li><a ng-href="#/About">About</a></li>
+          <li><a ng-href="#/Contact">Contact</a></li>
           <li><a ng-href="#/Products">Products</a></li>
-          <li><a ng-href="#/Articless">Articles</a></li>
+          <li><a ng-href="#/Articles">Articles</a></li>
           <li><a ng-href="#/SyncDb">Sync Database</a></li>
           <li><a ng-href="#/My Invoices">My Invoices</a></li>
         </ul>
@@ -36,8 +36,8 @@
       </div>
 
      <!--  <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div> -->
-     <div ng-view> 
-      <div class="row">
+     <div class="row-fluid" ng-view> 
+      <div class="row-fluid">
         <div class="col"></div>
         <div class="content text-center"></div>
         <div class="right"></div>
@@ -89,6 +89,7 @@
         <script src="scripts/config.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/productCtrlNew.js" ></script>
+        <script src="scripts/controllers/articlesCtrl.js" ></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/factories/utils.js"></script>
         <script src="scripts/controllers/syncDbCtrl.js"></script>

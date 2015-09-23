@@ -4,39 +4,14 @@
 	</div>
 
 	<div class="col-lg-12">
-		<h3 class="text-muted middle">Articles</h3>
-		<div class="col-lg-3 pull-left">
-		<ul>
-			<li ng-repeat="a in articles">
-			 <a href="" ng-click="showArticle(a)">{{a.title}}</a>	
-			</li>
-		</ul>
-		</div>
-		<div class="col-lg-9 pull-right" ng-show="currentContent">
-			<figure class='code'>
-				<div class="highlight">
-					<table>
-						<tr>
-							<td class='code'><pre><code class='bash'><span class='line'>{{currentContent}}</span></code></pre></td>
-						</tr>
-					</table>
-				</div>
-			</figure>
-		</div>
-	</div>
-
-	<div class="col-lg-12">
-		<img src="https://travis-ci.org/Afshintm/newtodo.svg?branch=master"></img>
-		<input type="button" class="green" ng-show="(products || undefined) !== undefined" ng-click="saveDataTofirebase()" value="uploads">
+		<img src="https://travis-ci.org/Afshintm/newtodo.svg?branch=develop"></img>
 	</div>
 	<div class="col-lg-12">
-		<table class="table table-striped" ng-show="(products || undefined) !== undefined">
-			<tr ng-repeat="p in products">
-				<td><span>{{p.Id}}</span></td>
-				<td><span>{{p.Name}}</span></td>
-				<td><span>{{p.Barcode}}</span></td>
-				<td><span>{{p.Price}}</span></td>
+		<table class="table table-striped" ng-show="model.products">
+			<tr ng-repeat="p in model.products">
+				<td><span>{{p.id}}</span></td>
+				<td><span>{{p.name}}</span></td>
+				<td><span>{{p.category}}</span></td>
 			</tr>
 		</table>
 	</div>
-</div>
