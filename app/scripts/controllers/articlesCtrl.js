@@ -6,13 +6,11 @@ angular.module('mytodoApp').controller('articlesCtrl',['$scope','$q','$http','EN
 		articles: []
 	};
 	var ref = firebaseRef('https://afshinblog.firebaseio.com');
-	//console.log(ref);
+	
 	utils.getFirebaseArray(ref).then(function(fireBaseArray){
 		if (fireBaseArray && fireBaseArray.length>0){
 			model.articles = fireBaseArray ;
 		}
-
-		//console.log(fireBaseArray[0]["Using Autofac effectively"]);
 
 	},function(error){
 
