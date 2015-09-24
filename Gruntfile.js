@@ -31,28 +31,28 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      // bower: {
-      //   files: ['bower.json'],
-      //   tasks: ['wiredep']
-      // },
-      // js: {
-      //   files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-      //   tasks: ['newer:jshint:all'],
-      //   options: {
-      //     livereload: '<%= connect.options.livereload %>'
-      //   }
-      // },
-      // jsTest: {
-      //   files: ['test/spec/{,*/}*.js'],
-      //   tasks: ['newer:jshint:test', 'karma']
-      // },
-      // styles: {
-      //   files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-      //   tasks: ['newer:copy:styles', 'autoprefixer']
-      // },
-      // gruntfile: {
-      //   files: ['Gruntfile.js']
-      // },
+      bower: {
+        files: ['bower.json'],
+        tasks: ['wiredep']
+      },
+      js: {
+        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        tasks: ['newer:jshint:all'],
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        }
+      },
+      jsTest: {
+        files: ['test/spec/{,*/}*.js'],
+        tasks: ['newer:jshint:test', 'karma']
+      },
+      styles: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+        tasks: ['newer:copy:styles', 'autoprefixer']
+      },
+      gruntfile: {
+        files: ['Gruntfile.js']
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
