@@ -1,3 +1,7 @@
+//Useful link    http://stackoverflow.com/questions/15666048/angularjs-service-vs-provider-vs-factory
+
+
+
 // 'use strict';
 // function Charge(montlyCharge, setupCharge){
 
