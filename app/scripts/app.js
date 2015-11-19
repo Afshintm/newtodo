@@ -16,7 +16,7 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person']
 	return function(url){
 		var fireRef = new $window.Firebase(url);
 		return fireRef;
-	}
+	};
 }])
 
 // using provider helper before config to define a provider 

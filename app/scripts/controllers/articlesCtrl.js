@@ -1,4 +1,3 @@
-/*global Firebase */
 'use strict';
 
 angular.module('mytodoApp').controller('articlesCtrl',['$scope','$q','$http','ENV','firebaseRef','utils',function($scope,$q,$http,Env,firebaseRef,utils){
@@ -13,7 +12,7 @@ angular.module('mytodoApp').controller('articlesCtrl',['$scope','$q','$http','EN
 		}
 
 	},function(error){
-
+		throw(error);
 	});
 	//console.log(r);
 }]);

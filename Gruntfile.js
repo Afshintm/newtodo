@@ -120,7 +120,7 @@ module.exports = function (grunt) {
         name: 'config',
       },
       // Environment targets
-      development: {
+      local: {
         options: {
           dest: '<%= yeoman.app %>/scripts/config.js'
         },
@@ -131,14 +131,39 @@ module.exports = function (grunt) {
           }
         }
       },
-      production: {
+
+      dev: {
         options: {
-          dest: '<%= yeoman.dist %>/scripts/config.js'
+          dest: '<%= yeoman.app %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
+            apiEndpoint: 'http://localhost/ProductsApi/api'
+          }
+        }
+      },
+
+      test: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
+            apiEndpoint: 'http://localhost/BackendServicesTest/api'
+          }
+        }
+      },
+
+      prod: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config.js'
         },
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://localhost/ProductsApi/api'
+            apiEndpoint: 'http://afshinproductsdevelop.azurewebsites.net/api'
           }
         }
       }
@@ -389,6 +414,14 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    autoBuild:{
+      local: 'local',
+      dev: 'dev',
+      test: 'test',
+      prod: 'prod'
+      
     }
   });
 
@@ -400,7 +433,6 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      //'ngconstant:development',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -424,7 +456,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'ngconstant:production',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -445,4 +476,15 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  grunt.registerTask('buildDev',[
+
+    ]);
+
+  grunt.registerMultiTask('autoBuild','build for target',function(){
+     grunt.log.writeln(this.target + ': ' + this.data);
+
+     grunt.task.run(['ngconstant:' + this.target,'default']);
+          
+  });
+
 };

@@ -23,7 +23,7 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','fir
         	}
         		
         });		
-	}
+	};
 	
 	utils.getApi(ENV.apiEndpoint + '/products').then(function(databaseData){
 		model.dbProducts = databaseData ;
