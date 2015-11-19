@@ -19,6 +19,6 @@ deploy:
   endpoint: afshinteymoori.com.s3-website-ap-southeast-2.amazonaws.com
   upload-dir: n1todo
 before_deploy:
-- grunt build
+- grunt autoBuild: prod
 addons:
   artifacts: true
