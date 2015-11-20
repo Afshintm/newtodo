@@ -13,7 +13,7 @@
 
     "grunt-contrib-cssmin": "*",
     "grunt-contrib-htmlmin": "*",
-    "grunt-contrib-imagemin": "^0.9.1",
+    "grunt-contrib-imagemin": "^1.0.0",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
