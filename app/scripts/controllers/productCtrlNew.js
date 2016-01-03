@@ -34,13 +34,13 @@ var model = $scope.model = {} ;
 
 	$scope.data = {name: 'Afshin Teymoori' , age:40} ;
 
-	// var p = callApi(ENV.apiEndpoint+'/products');
-	// p.then(function(data){
-	// 	$scope.products = data ;
-	// },function(reason){
-	// 	$scope.products = null ;
-	// 	console.log(reason);
-	// }) ;
+	var p = callApi(ENV.apiEndpoint+'/products');
+	p.then(function(data){
+		$scope.myApiproducts = data ;
+	},function(reason){
+		$scope.myApiproducts = null ;
+		console.log(reason);
+	}) ;
 
 	var ref = null ;
 	getFirebase('https://afshinblog.firebaseio.com').then(function(fireRef){
