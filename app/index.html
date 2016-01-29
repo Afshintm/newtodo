@@ -30,19 +30,21 @@
           <li><a ng-href="#/Products">Products</a></li>
           <li><a ng-href="#/Articles">Articles</a></li>
           <li><a ng-href="#/SyncDb">Sync Database</a></li>
-          <li><a ng-href="#/My Invoices">My Invoices</a></li>
+          <li><a ng-href="#/MyInvoices">MyInvoices</a></li>
+          <li><a ng-href="#/login">Login</a></li>
+          <li><a ng-href="#/Reg">Register</a></li>
         </ul>
         
       </div>
 
      <!--  <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div> -->
      <div class="row-fluid" ng-view> 
-      <div class="row-fluid">
+<!--       <div class="row-fluid">
         <div class="col"></div>
         <div class="content text-center"></div>
         <div class="right"></div>
       </div>
-     </div>
+ -->     </div>
 
       <div class="footer">
         <p><span class="glyphicon glyphicon-check"></span> Afshin Teymoori web site</p>
@@ -94,7 +96,13 @@
         <script src="scripts/factories/utils.js"></script>
         <script src="scripts/controllers/syncDbCtrl.js"></script>
         <script src="scripts/services/Employee.js"></script>
+        <script src="scripts/services/UserService.js"></script>
+        <script src="scripts/services/auth.js"></script>
         <script src="scripts/controllers/invoiceCtrl.js"></script>
+        <script src="scripts/controllers/loginCtrl.js"></script>
+        <script src="scripts/controllers/regCtrl.js"></script>
+
+
         
         <!-- endbuild -->
 </body>

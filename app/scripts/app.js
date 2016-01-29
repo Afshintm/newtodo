@@ -9,9 +9,9 @@
  * Main module of the application.
  */
  
-angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person'])
-.constant('fbProductsUrl','https://afshinproduct.firebaseio.com')
-.constant('fbArticlesUrl','https://afshinblog.firebaseio.com')
+angular.module('mytodoApp', ['ngRoute','ngAnimate','ngCookies','config','firebase','person'])
+// .constant('fbProductsUrl','https://afshinproduct.firebaseio.com')
+// .constant('fbArticlesUrl','https://afshinblog.firebaseio.com')
 .factory('firebaseRef',['$window',function($window){
 	return function(url){
 		var fireRef = new $window.Firebase(url);
@@ -47,8 +47,6 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person']
 	// at this stage services, factories and controllers have not been instantiated yet
 	//console.log('mytodoApp configuration phase is happening...') ;
 	
-	
-	
 
 	$routeProvider.when('/',{
 		templateUrl: 'views/main.html',
@@ -77,19 +75,27 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','config','firebase','person']
 		templateUrl: 'views/syncDb.html',
 		controller: 'syncDbCtrl',
 		title: 'Sync Database'
-	}).when('/My Invoices',{
+	}).when('/MyInvoices',{
 		templateUrl: 'views/invoiceList.html',
 		controller: 'invoiceCtrl',
 		title: 'Invoice List'
+	}).when('/login',{
+		templateUrl: 'views/login.html',
+		controller: 'loginCtrl',
+		title: 'Login'
+	}).when('/Reg',{
+		templateUrl: 'views/reg.html',
+		controller: 'regCtrl',
+		title: 'Reg'
 	}).otherwise({redirectTo: '/'});
 
 }])
-.run(['$firebaseArray','firebaseRef',
+.run(['$firebaseArray','firebaseRef','$cookieStore',
 	function($firebaseArray,firebaseRef){
 		// console.log('mytodoApp run phase is happeing...') ;
 		// console.log(firebaseRef);
 		if (!$firebaseArray || !firebaseRef){
-			// console.log('test');
+			 console.log('test');
 			// console.log(' Some services are not ready') ;
 		}
 	}]);
