@@ -87,7 +87,18 @@ angular.module('mytodoApp', ['ngRoute','ngAnimate','ngCookies','config','firebas
 		templateUrl: 'views/reg.html',
 		controller: 'regCtrl',
 		title: 'Reg'
-	}).otherwise({redirectTo: '/'});
+	}).when('/Customers',{
+		templateUrl: 'views/Customers/customers.html',
+		controller: 'customersCtrl',
+		title: 'Customers'
+	})
+	// .when('/CustomersEdit',{
+	// 	//url:'/Customers/:id/edit',
+	// 	templateUrl: 'views/Customers/customerEdit.html',
+	// 	controller: 'customerEditCtrl',
+	// 	title: 'Customers Edit'
+	// })
+	.otherwise({redirectTo: '/'});
 
 }])
 .run(['$firebaseArray','firebaseRef','$cookieStore',

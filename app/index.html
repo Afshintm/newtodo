@@ -12,8 +12,6 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="styles/ie10_viewport_bug_workaround.css" />
-
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/dashboard.css -->
@@ -49,7 +47,7 @@
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">Settings</a></li>
             <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a ng-href="#/Customers">Customers</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -177,6 +175,7 @@
     <script src="scripts/controllers/invoiceCtrl.js"></script>
     <script src="scripts/controllers/loginCtrl.js"></script>
     <script src="scripts/controllers/regCtrl.js"></script>
+    <script src="scripts/controllers/customersCtrl.js"></script>
     <!-- endbuild -->
 </body>
 </html>
