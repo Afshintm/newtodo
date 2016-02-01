@@ -84,7 +84,7 @@ angular.module('mytodoApp', ['ui.router' ,'ngAnimate','ngCookies','config','fire
       templateUrl: 'views/syncDb.html',
       controller:'syncDbCtrl'
     })
-    .state('invoice', {
+    .state('invoices', {
       url: "/invoice",
       templateUrl: 'views/invoiceList.html',
       controller:'invoiceCtrl'
