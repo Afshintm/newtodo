@@ -18,8 +18,11 @@
           <td data-title="Address"><span>{{c.address}}</span></td>
           <td data-title="Phone"><span>{{c.phone}}</span></td>
           <td data-title="Grade"><span>{{c.grade}}</span></td>
-          <td ><!--<a class="btn btn-primary" href="/CustomersEdit">Edit</a>--></td>
+          <td ><a class="btn btn-primary" ui-sref=".edit({id:c.id})">Edit</a></td>
         </tr>
     </table>
   </div>
+  
 </div>
+<hr/>
+<div ui-view></div>
