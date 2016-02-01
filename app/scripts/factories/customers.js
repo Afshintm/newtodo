@@ -19,14 +19,36 @@ angular.module('mytodoApp')
             getAll : function(){
                     return(list) ;
             },
-
+            getById : function(id){
+                return list.$getRecord(id);
+            },
+            remove: function(id){
+                var c = this.getById(id);
+                list.$remove(c);
+            },
             insert: function(customer){
+                var defered = $q.defer();
                 list.$add(customer).
                 then(function(ref) {
                     var refKey = ref.key();
                     console.log("added record with id " + refKey);
-                    return list.$indexFor(refKey); // returns location in the array
-                });
+                    defered.resolve(list.$indexFor(refKey));
+                }).catch(function(error){
+                        defered.reject(error);
+                    });
+                return defered.promise;
+            },
+            update: function(customer){
+                var item = this.getById(customer.$id);
+                var defered = $q.defer();
+                list.$save(customer).then(function(ref) {
+                        var refKey = ref.key();
+                        console.log("Updated record with id " + refKey);
+                        defered.resolve(list.$indexFor(refKey));
+                    }).catch(function(error){
+                        defered.reject(error);
+                    });
+                    return defered.promise;
             }
         };
     });

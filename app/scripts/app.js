@@ -109,6 +109,11 @@ angular.module('mytodoApp', ['ui.router' ,'ngAnimate','ngCookies','config','fire
       templateUrl: 'views/Customers/customerEdit.html',
       controller:'customersEditCtrl'
     })
+    .state('customers.new', {
+      url: '/new',
+      templateUrl: 'views/Customers/customerNew.html',
+      controller:'customersNewCtrl'
+    })
 
     .state('state1.list', {
       url: "/list",

@@ -48,17 +48,57 @@ angular.module('mytodoApp').controller('customersCtrl',['$scope','Customers',fun
         model.customers =  model.customersData.getAll() ;
     });
     
-
-    $scope.insert = function(data){
-
+    $scope.removeCustomer = function(ref){
+        console.log('remove is called'+ref);
+        model.customersData.remove(ref);
     }
-}]).controller('customersEditCtrl',['$scope',function($scope){
+    
+}]).controller('customersEditCtrl',['$scope','$stateParams','Customers',function($scope,$stateParams,Customers){
     var model = $scope.model = {} ;
+
+    Customers.then(function(customersData){
+        model.customersData = customersData; 
+    }).catch(function(error){
+        console.error(error);
+    }).finally(function(){
+        model.customer = model.customersData.getById($stateParams.id);
+    });
  
     $scope.updateCustomer = function(data){
         console.log('update customer is called.');
+        var updresult = model.customersData.update(model.customer);
+        updresult.then(function(index){
+            console.log(index);    
+        });
+        
 
     }
+}]).controller('customersNewCtrl',['$scope','Customers',function($scope,Customers){
+    var model = $scope.model = {} ;
+    model.customer = {};
+    Customers.then(function(customersData){
+        model.customersData = customersData; 
+    }).catch(function(error){
+        console.error(error);
+    });
+    // .finally(function(){
+    //     model.customer = model.customersData.insert(model.customer);
+    // });
+    
+    $scope.newCustomer = function(){
+        var list = model.customersData.getAll();
+        var existingMatch = list.filter(function(value){
+            return (value.id === model.customer.id) ;
+        });
+        if (existingMatch.length===0){
+            model.customersData.insert(model.customer).
+            then(function(index){
+                console.log(index);
+            });
+        }
+    };
+
+
 }])
 
 ;
