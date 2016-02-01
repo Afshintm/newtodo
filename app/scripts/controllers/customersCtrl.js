@@ -53,7 +53,7 @@ angular.module('mytodoApp').controller('customersCtrl',['$scope','Customers',fun
         model.customersData.remove(ref);
     }
     
-}]).controller('customersEditCtrl',['$scope','$stateParams','Customers',function($scope,$stateParams,Customers){
+}]).controller('customersEditCtrl',['$scope','$state','$stateParams','Customers',function($scope,$state,$stateParams,Customers){
     var model = $scope.model = {} ;
 
     Customers.then(function(customersData){
@@ -70,10 +70,10 @@ angular.module('mytodoApp').controller('customersCtrl',['$scope','Customers',fun
         updresult.then(function(index){
             console.log(index);    
         });
-        
+        $state.go('customers');
 
     }
-}]).controller('customersNewCtrl',['$scope','Customers',function($scope,Customers){
+}]).controller('customersNewCtrl',['$scope','$state','Customers',function($scope,$state,Customers){
     var model = $scope.model = {} ;
     model.customer = {};
     Customers.then(function(customersData){
@@ -96,6 +96,7 @@ angular.module('mytodoApp').controller('customersCtrl',['$scope','Customers',fun
                 console.log(index);
             });
         }
+        $state.go('customers');
     };
 
 
