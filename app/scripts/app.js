@@ -190,13 +190,15 @@ angular.module('mytodoApp', ['ui.router' ,'ngAnimate','ngCookies','config','fire
 	// .otherwise({redirectTo: '/'});
 
 }])
-.run(['$firebaseArray','firebaseRef','$cookieStore',
-	function($firebaseArray,firebaseRef){
+.run(['$firebaseArray','firebaseRef','$cookieStore','$state',
+	function($firebaseArray,firebaseRef,$cookieStore,$state){
 		// console.log('mytodoApp run phase is happeing...') ;
 		// console.log(firebaseRef);
 		if (!$firebaseArray || !firebaseRef){
 			 console.log('test');
 			// console.log(' Some services are not ready') ;
+
 		}
+		$state.go('main');
 	}]);
 
