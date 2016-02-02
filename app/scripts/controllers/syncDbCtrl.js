@@ -9,7 +9,6 @@ angular.module('mytodoApp').controller('syncDbCtrl',['$scope','utils','ENV','fir
 		fireBaseProductRef: 'https://afshinproduct.firebaseio.com'
 	};
 	$scope.editPrice = function(index){
-		// console.log('index passed is : ' + index) ;
 
         model.edit[index] = 1;
         model.firebaseArray[index].Price = parseFloat(model.firebaseArray[index].Price).toFixed(2);

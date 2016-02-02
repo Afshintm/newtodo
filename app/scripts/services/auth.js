@@ -1,6 +1,6 @@
 angular.module('mytodoApp').
-factory('auth',['ENV','firebaseRef','fbProductsUrl','$firebaseAuth','UserService',
-    function(ENV,firebaseRef,fbProductsUrl,$firebaseAuth,UserService){
+factory('auth',['firebaseRef','fbProductsUrl','$firebaseAuth','UserService',
+    function(firebaseRef,fbProductsUrl,$firebaseAuth,UserService){
     var authentication = 
     {
         login: function(username,password){

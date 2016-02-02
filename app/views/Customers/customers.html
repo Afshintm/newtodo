@@ -1,6 +1,11 @@
 <div class="row" ng-controler="customersCtrl">
-  <h3>Customers main view</h3>
-  <div class="col-md-12">
+<div class="col-md-9"> 
+ <h3>Customer List</h3>
+</div>
+<div class="col-md-3">
+  <a class="btn btn-primary green" ui-sref=".new">Add new customer</a>
+</div> 
+ <div class="col-md-12">
     <table class="table table-striped table-bordered table-hover table-condensed dataTable">
       <thead>
         <tr role="row">
@@ -18,8 +23,12 @@
           <td data-title="Address"><span>{{c.address}}</span></td>
           <td data-title="Phone"><span>{{c.phone}}</span></td>
           <td data-title="Grade"><span>{{c.grade}}</span></td>
-          <td ><!--<a class="btn btn-primary" href="/CustomersEdit">Edit</a>--></td>
+          <td ><a class="btn btn-primary" ui-sref=".edit({id:c.$id})">Edit</a> <button type="button" ng-click="removeCustomer(c.$id)" class="btn btn-danger">Delete</button>
+          </td>
         </tr>
     </table>
   </div>
+  
 </div>
+<hr/>
+<div ui-view></div>

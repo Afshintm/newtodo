@@ -40,14 +40,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Jomon Sales application prototype</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a ng-href="#/Customers">Customers</a></li>
+            <li><a ui-sref="main">Dashboard</a></li>
+            <li><a ui-sref="customers">Customers</a></li>
+            <li><a ui-sref="syncDb">Products</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -59,70 +58,30 @@
      <div class="row-fluid"> 
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a ng-href="#/">Home</a></li>
-            <li><a ng-href="#/About">About</a></li>
-            <li><a ng-href="#/Contact">Contact</a></li>
-            <li><a ng-href="#/Products">Products</a></li>
-            <li><a ng-href="#/Articles">Articles</a></li>
-            <li><a ng-href="#/SyncDb">Sync Database</a></li>
-            <li><a ng-href="#/MyInvoices">MyInvoices</a></li>
-            <li><a ng-href="#/login">Login</a></li>
-            <li><a ng-href="#/Reg">Register</a></li>              
-            <li><a href="#/">Reports</a></li>
-            <li><a href="#/">Analytics</a></li>
-            <li><a href="#/">Export</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
+            <li class="active"><a ui-sref="main">Home</a></li>
+            <!-- <li><a ui-sref="about">About</a></li> -->
+            <!-- <li><a ui-sref="contacts">Contact</a></li> -->
+            <!-- <li><a ui-sref="products">Products</a></li> -->
+            <!--<li><a ui-sref="articles">Articles</a></li>-->
+            <li><a ui-sref="customers">Customers</a></li>
+            <li><a ui-sref="syncDb">Products</a></li>
+            <!-- <li><a ui-sref="invoices">Invoices</a></li> -->
+            <li><a ui-sref="login">Login</a></li>
+            <li><a ui-sref="register">Register</a></li>              
           </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
-        </div>
-        <div class="col-xs-10 col-xs-offset-2">             
-             <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Header</th>
-                          <th>Header</th>
-                          <th>Header</th>
-                          <th>Header</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1,001</td>
-                          <td>Lorem</td>
-                          <td>ipsum</td>
-                          <td>dolor</td>
-                          <td>sit</td>
-                        </tr>
-                        <tr>
-                          <td>1,002</td>
-                          <td>amet</td>
-                          <td>consectetur</td>
-                          <td>adipiscing</td>
-                          <td>elit</td>
-                        </tr>
-                        <tr>
-                          <td>1,003</td>
-                          <td>Integer</td>
-                          <td>nec</td>
-                          <td>odio</td>
-                          <td>Praesent</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ui-view>
         </div>
      </div>
 
+     <hr/>
       <div class="footer">
-        <p><span class="glyphicon glyphicon-check"></span> Afshin Teymoori web site</p>
+        <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"><p><span class="glyphicon glyphicon-check"></span> Jomon Sales application prototype </p></div>
+        <div class="col-md-4"></div>
       </div>
+    </div>
     </div>
 
 
@@ -154,9 +113,9 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -168,6 +127,7 @@
     <script src="scripts/controllers/articlesCtrl.js" ></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/factories/utils.js"></script>
+    <script src="scripts/factories/customers.js"></script>
     <script src="scripts/controllers/syncDbCtrl.js"></script>
     <script src="scripts/services/Employee.js"></script>
     <script src="scripts/services/UserService.js"></script>
