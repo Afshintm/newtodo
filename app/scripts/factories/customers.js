@@ -7,51 +7,75 @@ angular.module('mytodoApp')
 
     var customerArray = utils.getFirebaseArray(ref) ;
 
+    var getdata = function(){
+            var defered = $q.defer() ;
+            customerArray
+            .then(function(firebaseData){
+                defered.resolve(firebaseData);
+            })
+            .catch(function(error){
+                console.error(error);
+                defered.reject(error);
 
-    var customer = customerArray.then(function(firebaseData){
-        var list = firebaseData;
-        return {
-            logAll : function(){
-                for (var i = list.length - 1; i >= 0; i--) {
-                    console.log(list[i]) ;
-                };
-            },
-            getAll : function(){
-                    return(list) ;
-            },
-            getById : function(id){
-                return list.$getRecord(id);
-            },
-            remove: function(id){
-                var c = this.getById(id);
-                list.$remove(c);
-            },
-            insert: function(customer){
-                var defered = $q.defer();
-                list.$add(customer).
-                then(function(ref) {
-                    var refKey = ref.key();
-                    console.log("added record with id " + refKey);
-                    defered.resolve(list.$indexFor(refKey));
-                }).catch(function(error){
-                        defered.reject(error);
-                    });
-                return defered.promise;
-            },
-            update: function(customer){
-                var item = this.getById(customer.$id);
-                var defered = $q.defer();
-                list.$save(customer).then(function(ref) {
-                        var refKey = ref.key();
-                        console.log("Updated record with id " + refKey);
-                        defered.resolve(list.$indexFor(refKey));
-                    }).catch(function(error){
-                        defered.reject(error);
-                    });
-                    return defered.promise;
-            }
+            });
+            return defered.promise;
         };
-    });
-    return customer;
+    var customer = {
+        getAll: function(){
+            var defered = $q.defer() ;
+            customerArray
+            .then(function(firebaseData){
+                defered.resolve(firebaseData);
+            })
+            .catch(function(error){
+                console.error(error);
+                defered.reject(error);
 
-    }]);
+            });
+            return defered.promise;
+        },
+        getById: function(id){
+            var defered = $q.defer();
+            getdata().then(function(data){
+                defered.resolve(data.$getRecord(id));
+            });
+            return defered.promise ;
+        },
+        remove: function(id){
+            this.getById(id).then(function(record){
+                getdata().then(function(data){
+                    data.$remove(record);
+                });
+            });
+
+        },
+        insert: function(customer){
+            var defered = $q.defer();
+            getdata().then(function(data){
+                data.$add(customer).then(function(ref){
+                    defered.resolve(data.$indexFor(ref.key()));
+                });
+            });
+            return defered.promise ;
+        },
+        update: function(customer){
+            var defered = $q.defer() ;
+            var item = this.getAll();
+            item.then(function(data){
+                data.$save(customer).then(function(ref) {
+                    var refKey = ref.key();
+                    console.log("Updated record with id " + refKey);
+                    defered.resolve(data.$indexFor(refKey));
+                }).catch(function(error){
+                    defered.reject(error);
+                });
+            });
+            return defered.promise;
+
+        }
+
+    };
+
+    return customer ;
+ 
+}]);
