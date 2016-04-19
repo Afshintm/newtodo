@@ -28,9 +28,20 @@ angular.module('mytodoApp', ['ui.router' ,'ngAnimate','ngCookies','config','fire
 // 	return new Person();
 // })
 // we inject the defined provider using the provider name + 'Provider' suffix to our module config phase 
-.config(['ENV','$provide', '$stateProvider', '$urlRouterProvider', 'personProvider', function(ENV, $provide, $stateProvider, $urlRouterProvider ,personProvider){
+.config(['ENV','$provide', '$stateProvider', '$urlRouterProvider', 'personProvider','$httpProvider', function(ENV, $provide, $stateProvider, $urlRouterProvider ,personProvider,$httpProvider){
+
+
+  //In configuration phase we get other dependecies using their providers
+  //at this stage services, factories and controllers have not been instantiated yet
+  //console.log('mytodoApp configuration phase is happening...') ;
+  
+  //$httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+
 	personProvider.setFirstName('afshin');
 	personProvider.setLastName('Teymoori');
+
 	$provide.provider('appConfig',function(){
 		this.$get = function(){
 			return angular.module('config');
@@ -44,11 +55,24 @@ angular.module('mytodoApp', ['ui.router' ,'ngAnimate','ngCookies','config','fire
 		};
 	});
 
-	//In configuration phase we get other dependecies using their providers
-	// at this stage services, factories and controllers have not been instantiated yet
-	//console.log('mytodoApp configuration phase is happening...') ;
-	
-//
+
+
+  $provide.factory('myHttpInterceptor',['$q',function myHttpInterceptor($q){
+    var requestInterceptor = {
+      request: function(config){
+
+        config.headers['Authorization'] = 'Basic YWZzaGluOlBhc3N3b3JkIQ==';
+
+        return config || $q.when(config);
+      }
+
+    } ;
+
+    return requestInterceptor ;
+  }]);
+
+  $httpProvider.interceptors.push('myHttpInterceptor');
+
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise("/");
   //
@@ -137,57 +161,6 @@ angular.module('mytodoApp', ['ui.router' ,'ngAnimate','ngCookies','config','fire
         }
       });
 
-	// $routeProvider.when('/',{
-	// 	templateUrl: 'views/main.html',
-	// 	controller:'MainCtrl',
-	// 	title: 'main page'
-	// })
-	// .when('/Contact',{
-	// 		templateUrl: 'views/main.html',
-	// 		controller: 'MainCtrl',
-	// 		title: 'main page'
-	// 	})
-	// .when('/About',{
-	// 		templateUrl: 'views/main.html',
-	// 		controller: 'MainCtrl',
-	// 		title: 'main page'
-	// 	})
-	// .when('/Products',{
-	// 	templateUrl: 'views/productList.html',
-	// 	controller: 'productCtrl',
-	// 	title: 'Product List'
-	// }).when('/Articles',{
-	// 	templateUrl: 'views/articles.html',
-	// 	controller: 'articlesCtrl',
-	// 	title: 'Articles List'
-	// }).when('/SyncDb',{
-	// 	templateUrl: 'views/syncDb.html',
-	// 	controller: 'syncDbCtrl',
-	// 	title: 'Sync Database'
-	// }).when('/MyInvoices',{
-	// 	templateUrl: 'views/invoiceList.html',
-	// 	controller: 'invoiceCtrl',
-	// 	title: 'Invoice List'
-	// }).when('/login',{
-	// 	templateUrl: 'views/login.html',
-	// 	controller: 'loginCtrl',
-	// 	title: 'Login'
-	// }).when('/Reg',{
-	// 	templateUrl: 'views/reg.html',
-	// 	controller: 'regCtrl',
-	// 	title: 'Reg'
-	// }).when('/Customers',{
-	// 	templateUrl: 'views/Customers/customers.html',
-	// 	controller: 'customersCtrl',
-	// 	title: 'Customers'
-	// })
-	// // .when('/CustomersEdit',{
-	// // 	//url:'/Customers/:id/edit',
-	// // 	templateUrl: 'views/Customers/customerEdit.html',
-	// // 	controller: 'customerEditCtrl',
-	// // 	title: 'Customers Edit'
-	// // })
-	// .otherwise({redirectTo: '/'});
 
 }])
 .run(['$firebaseArray','firebaseRef','$cookieStore','$state',
