@@ -13,11 +13,11 @@ deploy:
   skip_cleanup: true
   on: &2
     repo: Afshintm/newtodo
-    branch: develop
+    branch: jomon
   bucket: afshinteymoori.com
   region: ap-southeast-2
   endpoint: afshinteymoori.com.s3-website-ap-southeast-2.amazonaws.com
-  upload-dir: n1todo
+  upload-dir: jomon
 before_deploy:
 - grunt autoBuild:prod
 addons:

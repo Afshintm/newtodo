@@ -8,12 +8,12 @@ angular.module('mytodoApp').controller('customersCtrl',['$scope','Customers',fun
         model.customers = data ;
     }).catch(function(error){
         console.error(error);
-    })
+    });
 
     $scope.removeCustomer = function(ref){
         console.log('remove is called'+ref);
         Customers.remove(ref);
-    }
+    };
     
 }]).controller('customersEditCtrl',['$scope','$state','$stateParams','Customers',function($scope,$state,$stateParams,Customers){
     var model = $scope.model = {} ;
@@ -25,15 +25,15 @@ angular.module('mytodoApp').controller('customersCtrl',['$scope','Customers',fun
         console.error(error);
     });
  
-    $scope.updateCustomer = function(data){
+    $scope.updateCustomer = function(){
         console.log('update customer is called.');
         var updresult = Customers.update(model.customer);
         updresult.then(function(index){
             console.log(index);    
         });
         $state.go('customers');
+    };
 
-    }
 }]).controller('customersNewCtrl',['$scope','$state','Customers',function($scope,$state,Customers){
     var model = $scope.model = {} ;
     model.customer = {};
@@ -58,6 +58,4 @@ angular.module('mytodoApp').controller('customersCtrl',['$scope','Customers',fun
     };
 
 
-}])
-
-;
+}]);
