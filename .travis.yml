@@ -1,6 +1,8 @@
 language: node_js
 node_js:
 - '4'
+env:
+  - CXX=g++-4.8
 before_script:
 - npm install -g bower grunt-cli
 - bower install
@@ -22,3 +24,8 @@ before_deploy:
 - grunt autoBuild:prod
 addons:
   artifacts: true
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
