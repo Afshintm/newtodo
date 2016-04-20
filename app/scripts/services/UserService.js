@@ -1,6 +1,7 @@
 
 // try not to inject anything but filters or oter models to a model class like the following 
-angular.module('mytodoApp').service('UserService',['ENV','fbProductsUrl','firebaseRef','$http','$q','utils',function(ENV,fbProductsUrl,firebaseRef,$http,$q,utils){
+//angular.module('mytodoApp').service('UserService',['ENV','fbProductsUrl','firebaseRef','$http','$q','utils',function(ENV,fbProductsUrl,firebaseRef,$http,$q,utils){
+angular.module('mytodoApp').service('UserService',[function(){    
 	'use strict';
 
     //As  function passed to service recipie in angularJs is a constructor Function
@@ -51,12 +52,26 @@ angular.module('mytodoApp').service('UserService',['ENV','fbProductsUrl','fireba
 
 
 
-// As we’ve seen, the prototype object is fundamental to the identity of a class: two objects are instances of the same class if and only if they inherit from the same prototype object. The constructor function that initializes the state of a new object is not fundamental: two constructor functions may have prototype properties that point to the same pro- totype object. Then both constructors can be used to create instances of the same class.
-// Even through constructors are not as fundamental as prototypes, the constructor serves as the public face of a class. Most obviously, the name of the constructor function is usually adopted as the name of the class. We say, for example, that the Range() con- structor creates Range objects. More fundamentally, however, constructors are used with the instanceof operator when testing objects for membership in a class. If we have an object r and want to know if it is a Range object, we can write:
+// As we’ve seen, the prototype object is fundamental to the identity of a class: two objects are instances of the same class if and only if they inherit from the same prototype object. 
+//The constructor function that initializes the state of a new object is not fundamental: two constructor functions may have prototype properties that point to the same prototype object. 
+//Then both constructors can be used to create instances of the same class.
+
+// Even through constructors are not as fundamental as prototypes, the constructor serves as the public face of a class. 
+// Most obviously, the name of the constructor function is usually adopted as the name of the class. We say, for example, that the Range() constructor creates Range objects. 
+// More fundamentally, however, constructors are used with the instanceof operator when testing objects for membership in a class. 
+// If we have an object r and want to know if it is a Range object, we can write:
+
 // r instanceof Range // returns true if r inherits from Range.prototype
-// The instanceof operator does not actually check whether r was initialized by the Range constructor. It checks whether it inherits from Range.prototype. Nevertheless, the instanceof syntax reinforces the use of constructors as the public identity of a class. We’ll see the instanceof operator again later in this chapter.
+
+// The instanceof operator does not actually check whether r was initialized by the Range constructor. It checks whether it inherits from Range.prototype. 
+// Nevertheless, the instanceof syntax reinforces the use of constructors as the public identity of a class. We’ll see the instanceof operator again later in this chapter.
+
 // 9.2.2 The constructor Property
-// In Example 9-2 we set Range.prototype to a new object that contained the methods for our class. Although it was convenient to express those methods as properties of a single object literal, it was not actually necessary to create a new object. Any JavaScript function can be used as a constructor, and constructor invocations need a prototype property. Therefore, every JavaScript function (except functions returned by the EC- MAScript 5 Function.bind() method) automatically has a prototype property. The val- ue of this property is an object that has a single nonenumerable constructor property. The value of the constructor property is the function object:
+// In Example 9-2 we set Range.prototype to a new object that contained the methods for our class. 
+// Although it was convenient to express those methods as properties of a single object literal, it was not actually necessary to create a new object.
+// Any JavaScript function can be used as a constructor, and constructor invocations need a prototype property. 
+// Therefore, every JavaScript function (except functions returned by the EC- MAScript 5 Function.bind() method) automatically has a prototype property.
+// The value of this property is an object that has a single nonenumerable constructor property. The value of the constructor property is the function object:
 // var F = var p = var c = c === F
 // function() {}; // This is a function object.
 // F.prototype; // This is the prototype object associated with it. p.constructor; // This is the function associated with the prototype.

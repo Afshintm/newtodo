@@ -1,3 +1,4 @@
+'use strict';
 angular.module('mytodoApp').controller('loginCtrl',['$scope','utils','ENV','UserService','auth',function($scope, utils, ENV,UserService, auth){
     
     var model = $scope.model = {

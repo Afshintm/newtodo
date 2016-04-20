@@ -1,3 +1,4 @@
+'use strict';
 angular.module('mytodoApp').controller('regCtrl',['ENV','firebaseRef','fbProductsUrl','utils','$scope','$firebaseAuth',function(ENV,firebaseRef,fbProductsUrl,utils,$scope,$firebaseAuth){
     var model = $scope.model = {
         username:'',
@@ -7,7 +8,7 @@ angular.module('mytodoApp').controller('regCtrl',['ENV','firebaseRef','fbProduct
         console.log(fbProductsUrl);
         var ref = firebaseRef(fbProductsUrl);
         var auth = $firebaseAuth(ref);
-        console.log(model.username+'   '+model,password);
+        console.log(model.username+'   '+ model.password);
 
         auth.$createUser({
                 email:model.username,

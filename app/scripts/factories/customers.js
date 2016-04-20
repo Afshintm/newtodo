@@ -38,7 +38,7 @@ angular.module('mytodoApp')
             customerArray.then(function(data){
                 data.$save(customer).then(function(ref) {
                     var refKey = ref.key();
-                    console.log("Updated record with id " + refKey);
+                    console.log('Updated record with id ' + refKey);
                     defered.resolve(data.$indexFor(refKey));
                 }).catch(function(error){
                     defered.reject(error);

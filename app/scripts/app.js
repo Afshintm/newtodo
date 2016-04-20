@@ -61,7 +61,7 @@ angular.module('mytodoApp', ['ui.router' ,'ngAnimate','ngCookies','config','fire
     var requestInterceptor = {
       request: function(config){
 
-        config.headers['Authorization'] = 'Basic YWZzaGluOlBhc3N3b3JkIQ==';
+        config.headers.Authorization = 'Basic YWZzaGluOlBhc3N3b3JkIQ==';
 
         return config || $q.when(config);
       }
@@ -74,57 +74,57 @@ angular.module('mytodoApp', ['ui.router' ,'ngAnimate','ngCookies','config','fire
   $httpProvider.interceptors.push('myHttpInterceptor');
 
   // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise('/');
   //
   // Now set up the states
   $stateProvider
-    .state("main",{
+    .state('main',{
       url:'/main',
-      templateUrl:"views/main.html",
+      templateUrl:'views/main.html',
       controller:'MainCtrl'
      })
     .state('contacts', {
-      url: "/contacts",
+      url: '/contacts',
       templateUrl: 'views/main.html',
       controller:'MainCtrl'
     })
     .state('about', {
-      url: "/about",
+      url: '/about',
       templateUrl: 'views/main.html',
       controller:'MainCtrl'
     })
     .state('products', {
-      url: "/products",
+      url: '/products',
       templateUrl: 'views/productList.html',
       controller:'productCtrl'
     })
     .state('articles', {
-      url: "/articles",
+      url: '/articles',
       templateUrl: 'views/articles.html',
       controller:'articlesCtrl'
     })
     .state('syncDb', {
-      url: "/syncDb",
+      url: '/syncDb',
       templateUrl: 'views/syncDb.html',
       controller:'syncDbCtrl'
     })
     .state('invoices', {
-      url: "/invoice",
+      url: '/invoice',
       templateUrl: 'views/invoiceList.html',
       controller:'invoiceCtrl'
     })
     .state('login', {
-      url: "/login",
+      url: '/login',
       templateUrl: 'views/login.html',
       controller:'loginCtrl'
     })
     .state('register', {
-      url: "/register",
+      url: '/register',
       templateUrl: 'views/reg.html',
       controller:'regCtrl'
     })
     .state('customers', {
-      url: "/customers",
+      url: '/customers',
       templateUrl: 'views/Customers/customers.html',
       controller:'customersCtrl'
     })
@@ -140,24 +140,24 @@ angular.module('mytodoApp', ['ui.router' ,'ngAnimate','ngCookies','config','fire
     })
 
     .state('state1.list', {
-      url: "/list",
-      templateUrl: "partials/state1.list.html",
+      url: '/list',
+      templateUrl: 'partials/state1.list.html',
       controller: function($scope) {
-        $scope.items = ["A", "List", "Of", "Items"];
+        $scope.items = ['A', 'List', 'Of', 'Items'];
       }
     })
     .state('state2', {
-      url: "/state2",
-      templateUrl: "partials/state2.html",
+      url: '/state2',
+      templateUrl: 'partials/state2.html',
       controller:'state2Ctrl',
       abstract:true
 
     })
     .state('state2.list', {
-      url: "/list",
-        templateUrl: "partials/state2.list.html",
+      url: '/list',
+        templateUrl: 'partials/state2.list.html',
         controller: function($scope) {
-          $scope.things = ["A", "Set", "Of", "Things"];
+          $scope.things = ['A', 'Set', 'Of', 'Things'];
         }
       });
 

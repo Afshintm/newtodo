@@ -140,7 +140,10 @@ module.exports = function (grunt) {
           ENV: {
             name: 'development',
             apiEndpoint: 'http://localhost/ProductsApi/api'
-          }
+          },
+          fbProductsUrl: 'https://afshinproduct.firebaseio.com',
+          fbArticlesUrl:'https://afshinblog.firebaseio.com',
+          fbjomonCustomersUrl:'https://jomoncustomers.firebaseio.com/'
         }
       },
 
@@ -164,7 +167,11 @@ module.exports = function (grunt) {
           ENV: {
             name: 'production',
             apiEndpoint: 'http://afshinproductsdevelop.azurewebsites.net/api'
-          }
+          },
+          fbProductsUrl: 'https://afshinproduct.firebaseio.com',
+          fbArticlesUrl:'https://afshinblog.firebaseio.com',
+          fbjomonCustomersUrl:'https://jomoncustomers.firebaseio.com/'
+
         }
       }
     },
