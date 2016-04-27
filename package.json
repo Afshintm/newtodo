@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "repository": "git@github.com:Afshintm/newtodo.git",
-  "dependencies": {},
+  "dependencies": {
+    "socket.io": "*"
+    },
   "devDependencies": {
     "chalk": "^1.1.3",
     "convert-source-map": "^1.2.0",
